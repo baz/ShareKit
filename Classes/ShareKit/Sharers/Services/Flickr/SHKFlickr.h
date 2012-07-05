@@ -31,9 +31,14 @@
 #import "ObjectiveFlickr.h"
 #import "SHKFormOptionController.h"
 
+#if MAC_OS_X_VERSION_MIN_REQUIRED > MAC_OS_X_VERSION_10_4
 @interface SHKFlickr : SHKSharer<	OFFlickrAPIRequestDelegate,
 									SHKOAuthViewDelegate,
 									SHKFormOptionControllerOptionProvider> {
+#else
+@interface SHKFlickr : SHKSharer <SHKOAuthViewDelegate,
+									SHKFormOptionControllerOptionProvider> {
+#endif
 	
     OFFlickrAPIContext *flickrContext;
 	OFFlickrAPIRequest *flickrRequest;
